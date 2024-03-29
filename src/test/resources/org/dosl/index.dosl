@@ -1,0 +1,4 @@
+# This is a comment
+file1.txt # Comment after path
+# This in another comment
+file2.txt
