@@ -1,4 +1,24 @@
-# This is a comment
-file1.txt # Comment after path
-# This in another comment
-file2.txt
+@network "https://" {
+    
+    @google "google.com/" {
+        
+    }
+    
+    @github @project "github.com/" {
+        "Kiyotoko/" {
+            "dosl4j.git"
+        }
+        
+        "seekers-dev/" {
+            "seekers-py.git"
+            "seekers-server.git"
+        }
+    }
+}
+
+@local @project {
+    "src/main/resources/" {
+        "file1.json"
+        "file2.json"
+    }
+}
