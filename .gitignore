@@ -1,5 +1,6 @@
 /*/
 !src
+!gradle
 
 # Compiled class file
 *.class
