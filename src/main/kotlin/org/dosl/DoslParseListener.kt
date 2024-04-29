@@ -1,7 +1,5 @@
 package org.dosl
 
-import DoslBaseListener
-
 class DoslParseListener: DoslBaseListener() {
     val listing = DoslListing()
 

@@ -1,5 +1,9 @@
 grammar Dosl;
 
+@header {
+package org.dosl;
+}
+
 root: (item)* EOF;
 item: (group | path | comment) ;
 group: (path|label+) '{' body '}' ;
