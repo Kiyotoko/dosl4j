@@ -17,8 +17,8 @@
 }
 
 @local @project {
-    "src/main/resources/" {
-        "file1.json"
+    @network "src/main/resources/" {
+        @project "file1.json"
         "file2.json"
     }
 }
