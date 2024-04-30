@@ -3,7 +3,7 @@ package org.dosl
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class DoslTest {
+class TestDosl {
     @Test
     fun parse() {
         Assertions.assertDoesNotThrow {
