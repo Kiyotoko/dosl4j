@@ -2,7 +2,6 @@ package org.dosl
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.ArrayList
 
 class DoslTest {
     @Test
@@ -10,14 +9,11 @@ class DoslTest {
         Assertions.assertDoesNotThrow {
             javaClass.getResource("index.dosl")!!.let {
                 val listing = parseDoslFile(it.path)
-                Assertions.assertFalse(listing.toCollection(ArrayList()).isEmpty())
+                Assertions.assertFalse(listing.paths.isEmpty())
 
-                for (name in listing) {
-                    println(name)
+                for (entry in listing.labels) {
+                    println("@${entry.key}: ${entry.value}")
                 }
-
-                println(listing["network"])
-                println(listing["project"])
             }
         }
     }

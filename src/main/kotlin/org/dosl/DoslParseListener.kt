@@ -4,8 +4,8 @@ class DoslParseListener: DoslBaseListener() {
     val listing = DoslListing()
 
     override fun exitRoot(ctx: DoslParser.RootContext) {
-        for (item in ctx.item()) {
-            parseItem(item, "", ArrayList())
+        for (entry in ctx.entry()) {
+            parseEntry(entry, "", ArrayList())
         }
     }
 
@@ -17,27 +17,32 @@ class DoslParseListener: DoslBaseListener() {
             }
         }
         var subPath = String(path.toByteArray())
-        if (ctx.path() != null) {
-            subPath += content(ctx.path().PATH().text)
+        if (ctx.PATH() != null) {
+            subPath += content(ctx.PATH().text)
         }
-        for (item in ctx.body().item()) {
-            parseItem(item, subPath, subLabel)
+        for (item in ctx.body().entry()) {
+            parseEntry(item, subPath, subLabel)
         }
     }
 
-    private fun parseItem(ctx: DoslParser.ItemContext, path: String, labels: List<String>) {
+    private fun parseEntry(ctx: DoslParser.EntryContext, path: String, labels: List<String>) {
         if (ctx.group() != null) {
             parseGroup(ctx.group(), path, labels)
-        } else if (ctx.path() != null) {
-            val node = ctx.path()
+        } else if (ctx.item() != null) {
+            val node = ctx.item()
             val name = path + content(node.PATH().text)
             for (label in node.label()) {
-                listing += Pair(label.NAME().text, name)
+                val key = label.NAME().text
+                val set = listing.labels[key]
+                if (set != null) set.add(name)
+                else listing.labels[key] = HashSet(listOf(name))
             }
             for (label in labels) {
-                listing += Pair(label, name)
+                val set = listing.labels[label]
+                if (set != null) set.add(name)
+                else listing.labels[label] = HashSet(listOf(name))
             }
-            listing += name
+            listing.paths.add(name)
         }
     }
 }

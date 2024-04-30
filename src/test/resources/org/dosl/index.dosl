@@ -1,7 +1,8 @@
 @network "https://" {
     
-    @google "google.com/" {
-        
+    @google {
+        "google.com"
+        "youtube.com"
     }
     
     @github @project "github.com/" {
@@ -17,8 +18,8 @@
 }
 
 @local @project {
-    @network "src/main/resources/" {
-        @project "file1.json"
+    "src/test/resources/" {
+        "file1.json"
         "file2.json"
     }
 }
