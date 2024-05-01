@@ -19,16 +19,14 @@ kotlin {
     jvmToolchain(11)
 }
 publishing {
-    publications {
-        create<MavenPublication>("github") {
-            from(components["java"])
-        }
-    }
-
     repositories {
         maven {
-            name = "github"
+            name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Kiyotoko/dosl4j")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
         }
     }
 }
