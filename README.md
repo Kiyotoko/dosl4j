@@ -33,9 +33,10 @@ import org.dosl.DoslUtilsKt;
 ...
 
 // Parse dosl file
-DoslListing listing = DoslUtilsKt.parseDoslFile(getClass().getResource("Path/To/File.dosl").getPath());
+DoslListing listing = DoslUtilsKt.parseDoslFile(getClass(), "Path/To/File.dosl");
 
-listing.getLabels(); // Map of all labels
+listing.getLabelsToPaths(); // Map of all labels
+listing.getPathsToLabels(); // Map of all paths
 listing.getPaths(); // Set of all paths
 ```
 

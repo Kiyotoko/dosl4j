@@ -1,10 +1,11 @@
 plugins {
     kotlin("jvm") version "1.9.22"
     antlr
+    `maven-publish`
 }
 
 group = "org.dosl"
-version = "1.0-SNAPSHOT"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -16,6 +17,20 @@ dependencies {
 }
 kotlin {
     jvmToolchain(11)
+}
+publishing {
+    publications {
+        create<MavenPublication>("github") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "github"
+            url = uri("https://maven.pkg.github.com/Kiyotoko/dosl4j")
+        }
+    }
 }
 
 tasks.test {
@@ -30,4 +45,3 @@ tasks.compileTestKotlin {
 tasks.generateGrammarSource {
     arguments.plusAssign(listOf("-visitor"))
 }
-
