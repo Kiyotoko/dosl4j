@@ -3,7 +3,7 @@ plugins {
     antlr
 }
 
-group = "org.example"
+group = "org.dosl"
 version = "1.0-SNAPSHOT"
 
 repositories {

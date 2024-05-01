@@ -1,8 +1,43 @@
-<h1>dosl4j</h1>
+<h1 align="center">dosl4j</h1>
 
-DOSL for java is a lightweight java library for .dosl files.
+<div align="center">
+    <a href="https://github.com/Kiyotoko/dosl4j/actions/workflows/gradle-publish.yml">
+        <img alt="Gradle Package" src="https://github.com/Kiyotoko/dosl4j/actions/workflows/gradle-publish.yml/badge.svg">
+    </a>
+    <a href="https://github.com/Kiyotoko/dosl4j/actions/workflows/gradle.yml">
+        <img alt="Java CI with Gradle" src="https://github.com/Kiyotoko/dosl4j/actions/workflows/gradle.yml/badge.svg">
+    </a>
+</div>
+
+DOSL for java is a lightweight java library for `.dosl` files.
 
 ## Getting started
+
+### Installation
+
+Check out the latest release for the maven dependency.
+
+```xml
+<dependency>
+    <groupId>org.dosl</groupId>
+    <artifactId>dosl4j</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+### Usage
+
+```java
+import org.dosl.DoslUtilsKt;
+
+...
+
+// Parse dosl file
+DoslListing listing = DoslUtilsKt.parseDoslFile(getClass().getResource("Path/To/File.dosl").getPath());
+
+listing.getLabels(); // Map of all labels
+listing.getPaths(); // Set of all paths
+```
 
 ## DOSL language guide
 
@@ -15,17 +50,17 @@ You can specify local and network paths. You can create absolute and relative pa
 "org/example/file.json"
 ```
 
-Paths must be wrapped in parentheses (`"`).
+Paths must be wrapped in quotes (`"`).
 
 ### Labels
 
 You can add one or multiple labels before a path to annotate it.
 
-```json
+```kotlin
 @label "https://example.com"
 ```
 
-```json
+```kotlin
 @label1 @label2 "https://example.com"
 ```
 

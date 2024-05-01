@@ -3,6 +3,11 @@ package org.dosl
 import org.antlr.v4.runtime.BaseErrorListener
 import org.antlr.v4.runtime.RecognitionException
 
+/**
+ * Default error listener for dosl parsing.
+ *
+ * @author karlz
+ */
 class DoslErrorListener: BaseErrorListener() {
 
     override fun syntaxError(
@@ -13,6 +18,6 @@ class DoslErrorListener: BaseErrorListener() {
         msg: String?,
         e: RecognitionException?
     ) {
-        System.err.printf("Syntax Error [%d:%d]: %s%n", line, charPositionInLine, msg)
+        throw DoslParseException(msg.orEmpty(), line, charPositionInLine)
     }
 }

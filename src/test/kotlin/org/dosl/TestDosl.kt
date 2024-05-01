@@ -3,6 +3,11 @@ package org.dosl
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
+/**
+ * Test of basic features.
+ *
+ * @author karlz
+ */
 class TestDosl {
     @Test
     fun parse() {
@@ -11,7 +16,7 @@ class TestDosl {
                 val listing = parseDoslFile(it.path)
                 Assertions.assertFalse(listing.paths.isEmpty())
 
-                for (entry in listing.labels) {
+                for (entry in listing.labelsToPaths) {
                     println("@${entry.key}: ${entry.value}")
                 }
             }
