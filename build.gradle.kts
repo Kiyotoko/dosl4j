@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.22"
     antlr
-    `maven-publish`
+    id("maven-publish")
 }
 
 group = "org.dosl"
@@ -18,7 +18,38 @@ dependencies {
 kotlin {
     jvmToolchain(11)
 }
+
+val instance = this
 publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.dosl"
+            artifactId = "dosl4j"
+            version = "0.1.0"
+
+            from(components["java"])
+
+            pom {
+                name = "dosl4j"
+                description = ""
+
+                licenses {
+                    license {
+                        name = "MIT"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "karlz"
+                        name = "Karl Zschiebsch"
+                    }
+                }
+            }
+        }
+    }
+
+
     repositories {
         maven {
             name = "GitHubPackages"
